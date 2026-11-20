@@ -1,0 +1,172 @@
+{
+  "created_utc": "2026-11-20T15:07:17.110645+00:00",
+  "dataset": {
+    "rows": 8000,
+    "columns": 11,
+    "missing_cells": 0,
+    "duplicate_rows": 0,
+    "missing_by_column": {
+      "current_odometer_km": 0,
+      "last_service_odometer_km": 0,
+      "km_since_last_service": 0,
+      "vehicle_age_years": 0,
+      "average_daily_km": 0,
+      "months_since_last_service": 0,
+      "recommended_interval_km": 0,
+      "recommended_interval_months": 0,
+      "driving_condition": 0,
+      "previous_service_type": 0,
+      "remaining_km_to_service": 0
+    },
+    "source_type": "reproducible synthetic simulation",
+    "target": "remaining_km_to_service",
+    "feature_columns": [
+      "current_odometer_km",
+      "last_service_odometer_km",
+      "km_since_last_service",
+      "vehicle_age_years",
+      "average_daily_km",
+      "months_since_last_service",
+      "recommended_interval_km",
+      "recommended_interval_months",
+      "driving_condition",
+      "previous_service_type"
+    ],
+    "numeric_iqr_outliers_by_column": {
+      "current_odometer_km": 0,
+      "last_service_odometer_km": 0,
+      "km_since_last_service": 341,
+      "vehicle_age_years": 0,
+      "average_daily_km": 345,
+      "months_since_last_service": 238,
+      "recommended_interval_km": 618,
+      "recommended_interval_months": 3000,
+      "remaining_km_to_service": 5
+    }
+  },
+  "random_state": 42,
+  "split": {
+    "train": 0.64,
+    "validation": 0.16,
+    "test": 0.2
+  },
+  "train_rows": 5120,
+  "validation_rows": 1280,
+  "test_rows": 1600,
+  "selection_metric": "Lowest validation MAE; R2 used only as tie-breaker. Test remains untouched until final comparison.",
+  "selected_model": "Tuned Random Forest",
+  "selected_model_top_feature_importances": [
+    {
+      "feature": "numeric__months_since_last_service",
+      "importance": 0.4275216101893908
+    },
+    {
+      "feature": "numeric__recommended_interval_months",
+      "importance": 0.21036934093766047
+    },
+    {
+      "feature": "numeric__km_since_last_service",
+      "importance": 0.13932671269226937
+    },
+    {
+      "feature": "numeric__recommended_interval_km",
+      "importance": 0.10691579054364786
+    },
+    {
+      "feature": "numeric__average_daily_km",
+      "importance": 0.10468475109415763
+    },
+    {
+      "feature": "numeric__vehicle_age_years",
+      "importance": 0.0033598769211063396
+    },
+    {
+      "feature": "categorical__driving_condition_City",
+      "importance": 0.002010975321834362
+    },
+    {
+      "feature": "numeric__current_odometer_km",
+      "importance": 0.001817516522703623
+    },
+    {
+      "feature": "numeric__last_service_odometer_km",
+      "importance": 0.0016724794650493783
+    },
+    {
+      "feature": "categorical__driving_condition_Mixed",
+      "importance": 0.0005655830906421052
+    }
+  ],
+  "validation_metrics": {
+    "Median baseline": {
+      "MAE": 2457.6271406250003,
+      "MSE": 8899354.670155939,
+      "RMSE": 2983.178618546992,
+      "R2": -0.020353099457192547
+    },
+    "Decision Tree": {
+      "MAE": 426.9158046110739,
+      "MSE": 554490.8738624459,
+      "RMSE": 744.6414397966621,
+      "R2": 0.9364249990323894
+    },
+    "Extra Trees": {
+      "MAE": 364.8848811115246,
+      "MSE": 388069.14465734817,
+      "RMSE": 622.9519601521037,
+      "R2": 0.9555060373217052
+    },
+    "Random Forest": {
+      "MAE": 331.6198501756971,
+      "MSE": 336481.92113803746,
+      "RMSE": 580.070617371745,
+      "R2": 0.9614207564627277
+    },
+    "Tuned Random Forest": {
+      "MAE": 321.03846750276546,
+      "MSE": 311892.0403598598,
+      "RMSE": 558.4729540092876,
+      "R2": 0.9642401025835692
+    }
+  },
+  "tuned_random_forest_best_params": {
+    "model__n_estimators": 120,
+    "model__min_samples_leaf": 2,
+    "model__max_features": 1.0,
+    "model__max_depth": 18
+  },
+  "tuned_random_forest_cv_mae_km": 347.0672265944377,
+  "model_metrics": {
+    "Median baseline": {
+      "MAE": 2503.78573125,
+      "MSE": 9047756.501092814,
+      "RMSE": 3007.9488860505617,
+      "R2": -0.022183448735525912
+    },
+    "Decision Tree": {
+      "MAE": 397.21927102456834,
+      "MSE": 461383.94931894523,
+      "RMSE": 679.2524930531689,
+      "R2": 0.9478744773415273
+    },
+    "Extra Trees": {
+      "MAE": 334.34894351616674,
+      "MSE": 300947.17191536166,
+      "RMSE": 548.5865218134343,
+      "R2": 0.966000055589638
+    },
+    "Random Forest": {
+      "MAE": 293.43902652987197,
+      "MSE": 243030.41931668858,
+      "RMSE": 492.9811551334276,
+      "R2": 0.9725432849419888
+    },
+    "Tuned Random Forest": {
+      "MAE": 283.05249906411774,
+      "MSE": 228309.35032480932,
+      "RMSE": 477.81727713092306,
+      "R2": 0.9742064191199892
+    }
+  },
+  "prediction_target_scope": "Synthetic simulated remaining kilometres; not real-world or mechanical-diagnosis accuracy."
+}
