@@ -14,6 +14,10 @@
 
 > **Classroom prototype:** The model learns from generated sample data. Its scores do not describe real-world vehicle accuracy, and the app is not a fault-diagnosis tool. Follow the vehicle owner's manual and consult a qualified technician.
 
+<p align="center"><a href="https://shivubuilds-mikasa.github.io/ML/"><img src="https://img.shields.io/badge/OPEN-THE%20INTERACTIVE%20DEMO-10b7a4?style=for-the-badge&logo=githubpages&logoColor=white" alt="Open the interactive CarCare AI demo" /></a></p>
+
+The browser demo runs an exported copy of the trained Random Forest locally in your browser, then applies the same owner-manual distance and time caps. Your demo inputs are not sent to a server. GitHub Pages publishes the site from `website/` when that folder or its deployment workflow changes.
+
 ## The idea
 
 CarCare AI turns vehicle-use details into an estimated **remaining distance to the next scheduled service**. It demonstrates a complete beginner-friendly ML workflow: generate repeatable data, explore it, prepare features, compare regressors, tune a model, evaluate errors, and connect the saved model to a Streamlit interface.
@@ -22,7 +26,7 @@ The app asks for odometer and service-history information plus distance and time
 
 <p align="center">
   <img src="reports/eda/09_app_home.png" alt="CarCare AI Streamlit app home screen" width="88%" />
-  <br /><sub>Local Streamlit prototype · no public hosted demo is configured</sub>
+  <br /><sub>Screenshot from the Python Streamlit prototype. The interactive browser demo is linked above.</sub>
 </p>
 
 ## At a glance
@@ -114,6 +118,8 @@ Open the local URL printed in the terminal, usually `http://localhost:8501`. The
 python -m src.train
 ```
 
+After retraining, refresh the browser-friendly model files with `python website/export_model.py` before publishing the demo.
+
 On macOS/Linux, activate the environment with `source .venv/bin/activate`.
 
 ## What you can explore
@@ -139,6 +145,7 @@ On macOS/Linux, activate the environment with `source .venv/bin/activate`.
 ├── reports/eda/      # Charts, diagnostics, app capture
 ├── src/              # Data, preprocessing, training, evaluation, prediction
 ├── tests/            # Project checks
+├── website/          # GitHub Pages demo and browser model assets
 ├── TEAM_CONTRIBUTIONS.md
 ├── VIVA_AND_PRESENTATION.md
 └── requirements.txt
