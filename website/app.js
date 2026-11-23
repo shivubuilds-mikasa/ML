@@ -113,11 +113,12 @@
   function predictForest(row, manifest, forest) {
     let total = 0;
     for (let tree = 0; tree < manifest.tree_count; tree += 1) {
-      let node = manifest.tree_offsets[tree];
+      const start = manifest.tree_offsets[tree];
+      let node = start;
       const end = manifest.tree_offsets[tree + 1];
       let hops = 0;
       while (true) {
-        if (node < manifest.tree_offsets[tree] || node >= end || hops > 100) throw new Error("The browser encountered an invalid path in the model.");
+        if (node < start || node >= end || hops > 100) throw new Error("The browser encountered an invalid path in the model.");
         const offset = node * manifest.node_bytes;
         const left = forest.getInt32(offset, true);
         const right = forest.getInt32(offset + 4, true);
@@ -126,7 +127,8 @@
           total += forest.getFloat64(offset + 20, true);
           break;
         }
-        node = row[feature] <= forest.getFloat64(offset + 12, true) ? left : right;
+        // scikit-learn child indices are local to each individual tree.
+        node = start + (row[feature] <= forest.getFloat64(offset + 12, true) ? left : right);
         hops += 1;
       }
     }
